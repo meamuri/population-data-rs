@@ -33,6 +33,19 @@ pub fn read_csv(file_path: &str)  -> Result<Vec<City>, Box<Error>> {
 
     Ok(res)    
 }
+
+pub fn select_useful(data: Vec<City>) -> Vec<City> {
+    let mut checker = HashMap::new();
+    let mut res = Vec<City>::new();
+    for val in data.iter() {
+        let city_name = val.get_city_name();
+        let year = if checker.entry(city_name).or_insert(city_name, val.get_year());
+        if year > val.get_year()
+                
+    }    
+    
+}
+
 // pub fn select_useful(data: Vec<City>) -> HashMap<String,City> {
 //     let mut res = HashMap::new();
 //     for val in data.iter() {
