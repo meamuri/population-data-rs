@@ -12,5 +12,5 @@ fn main() {
 
 
     println!("{}", records.len());
-    select_useful(&records);
+    let countries = select_useful(records);
 }

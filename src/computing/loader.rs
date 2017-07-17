@@ -27,13 +27,18 @@ pub fn read_csv(file_path: &str)  -> Result<Vec<City>, Box<Error>> {
 
     Ok(res)    
 }
-pub fn select_useful(data: &Vec<City>) -> HashMap<String,City> {
-    let res = HashMap::new();
+pub fn select_useful(data: Vec<City>) -> HashMap<String,City> {
+    let mut res = HashMap::new();
     for val in data.iter() {
-        
+        res.insert(val.country.clone(), City{
+            country: val.country.clone(),
+            name: val.name.clone(),
+            year: val.year,
+            value: val.value
+        });
     }
-    for val in data.iter().take(40) {
-        println!("{:?}", val.name);
+    for (key, val) in res.iter().take(40) {
+        println!("{:?}", key);
     }
     res
 }

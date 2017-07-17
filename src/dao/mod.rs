@@ -7,5 +7,7 @@ pub struct City {
 }
 
 impl City {
-    
+    // fn copy(city: &City) -> City {
+    //     City {..city}
+    // }
 }
