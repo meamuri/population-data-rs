@@ -1,16 +1,27 @@
 extern crate csv;
 
+use super::super::dao::*;
+
 use std::fs::File;
 use std::error::Error;
 use std::path::Path;
 
-pub fn read_csv(file_path: &str)  -> Result<(), Box<Error>> {    
+pub fn read_csv(file_path: &str)  -> Result<Vec<City>, Box<Error>> {    
     let path = Path::new(file_path);
     let file = File::open(path)?;
     let mut rdr = csv::Reader::from_reader(file);
+
+    let mut res = Vec::new();
+
     for result in rdr.records() {
         let record = result?;
-        println!("{:?}", record);
+        res.push(City{
+            country: String::from(&record[0]),
+            name: String::from(&record[4]),
+            year: *&record[1].parse::<i32>().unwrap_or_default(),
+            value: *&record[9].parse::<f64>().unwrap_or_default()
+        });        
     }
-    Ok(())    
+
+    Ok(res)    
 }
