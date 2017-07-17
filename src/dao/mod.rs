@@ -27,3 +27,13 @@ impl fmt::Display for City {
         write!(f, "country: {}, name: {}; cnt: {}", self.country, self.name, self.value)
     }
 }
+
+impl Clone for City {
+    fn clone(&self) -> City {
+        City {
+            country: self.country.clone(),
+            name: self.name.clone(),
+            ..*self
+        }
+    }
+}

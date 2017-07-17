@@ -35,15 +35,33 @@ pub fn read_csv(file_path: &str)  -> Result<Vec<City>, Box<Error>> {
 }
 
 pub fn select_useful(data: Vec<City>) -> Vec<City> {
-    let mut checker = HashMap::new();
-    let mut res = Vec<City>::new();
+    let mut checker: HashMap<String, City> = HashMap::new();
+    
     for val in data.iter() {
         let city_name = val.get_city_name();
-        let year = if checker.entry(city_name).or_insert(city_name, val.get_year());
-        if year > val.get_year()
-                
+        let year = val.get_year();
+
+        let city = checker.entry(city_name.clone()).or_insert(val.clone());
+        if (city.get_year() < year) {
+            *city = val.clone();
+        }
+
+        
+        // if !checker.contains_key(&city_name) || 
+        //     checker.get(&city_name).get_year() < val.get_year() {
+        //     checker.insert(city_name.clone(), val.clone());
+        // }
+        // let city = checker.entry(city_name.clone()).or_insert(val.clone());
+        // if city.get_year() < val.get_year() {
+        //     checker.insert(city_name.clone(), val.clone());
+        // }
     }    
     
+    let mut res = Vec::new();
+    for (_, val) in checker.iter() {
+        res.push(val.clone())
+    }
+    res
 }
 
 // pub fn select_useful(data: Vec<City>) -> HashMap<String,City> {
