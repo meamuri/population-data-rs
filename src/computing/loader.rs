@@ -6,6 +6,8 @@ use std::fs::File;
 use std::error::Error;
 use std::path::Path;
 
+use std::collections::HashMap;
+
 pub fn read_csv(file_path: &str)  -> Result<Vec<City>, Box<Error>> {    
     let path = Path::new(file_path);
     let file = File::open(path)?;
@@ -24,4 +26,14 @@ pub fn read_csv(file_path: &str)  -> Result<Vec<City>, Box<Error>> {
     }
 
     Ok(res)    
+}
+pub fn select_useful(data: &Vec<City>) -> HashMap<String,City> {
+    let res = HashMap::new();
+    for val in data.iter() {
+        
+    }
+    for val in data.iter().take(40) {
+        println!("{:?}", val.name);
+    }
+    res
 }

@@ -5,3 +5,7 @@ pub struct City {
     pub year: i32,
     pub value: f64
 }
+
+impl City {
+    
+}
