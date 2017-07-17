@@ -12,7 +12,7 @@ fn main() {
 
     println!("{}", records.len());
     for val in records.iter().take(5) {
-        // println!("{}", val);        
+        println!("{}", val);        
     }
 
     // let countries = select_useful(records);

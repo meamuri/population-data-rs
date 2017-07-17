@@ -1,3 +1,5 @@
+use std::fmt;
+
 pub struct City {
     country: String,
     name: String,
@@ -13,5 +15,11 @@ impl City {
             year: year,
             value: val,
         }
+    }
+}
+
+impl fmt::Display for City {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "country: {}, name: {}; cnt: {}", self.country, self.name, self.value)
     }
 }
