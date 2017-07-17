@@ -1,13 +1,17 @@
-
 pub struct City {
-    pub country: String,
-    pub name: String,
-    pub year: i32,
-    pub value: f64
+    country: String,
+    name: String,
+    year: i32,
+    value: f64
 }
 
 impl City {
-    // fn copy(city: &City) -> City {
-    //     City {..city}
-    // }
+    pub fn new(country: &str, name: &str, year: i32, val: f64 ) -> City {
+        City {
+            country: country.to_string(),
+            name: country.to_string(),
+            year: year,
+            value: val,
+        }
+    }
 }
