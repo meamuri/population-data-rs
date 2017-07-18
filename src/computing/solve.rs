@@ -12,8 +12,15 @@ pub fn millionaires(countries: &HashMap<String, Vec<City>>, level: f64) -> HashM
     res
 }
 
-pub fn population(countries: HashMap<String, Vec<City>>) -> HashMap<String, f64> {
-    let res = HashMap::new();
+pub fn population(countries: &HashMap<String, Vec<City>>) -> HashMap<String, f64> {
+    
+    let mut res = HashMap::new();
+    for (country, cities) in countries {
+        let population = res.entry(country.clone()).or_insert(0.0);
+        for city in cities.iter() {
+            *population += city.get_population();
+        }
+    }
     res
 }
 
