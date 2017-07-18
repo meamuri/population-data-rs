@@ -2,7 +2,7 @@ extern crate population_data_rs;
 
 use population_data_rs::computing::loader::{read_csv, combine_by_countries, select_useful};
 use population_data_rs::computing::solve::{millionaires, population, top};
-use population_data_rs::computing::saver::save_millionaires;
+use population_data_rs::computing::saver::{save_millionaires, save_top};
 
 const POPULATION_LEVEL: f64 = 1_000_000.0;
 const TOP_N: usize = 5;
@@ -50,4 +50,5 @@ fn main() {
     }
 
     save_millionaires(&res_millionaires);
+    save_top(&res_top);
 }

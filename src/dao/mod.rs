@@ -1,7 +1,9 @@
 use std::fmt;
 
+#[derive(Serialize, Deserialize, Debug)]
 pub struct City {
     country: String,
+    #[serde(rename = "_id")]  // Use MongoDB's special primary key field name when serializing 
     name: String,
     year: i32,
     value: f64
