@@ -16,13 +16,7 @@ pub fn read_csv(file_path: &str)  -> Result<Vec<City>, Box<Error>> {
     let mut res = Vec::new();
 
     for result in rdr.records() {
-        let record = result?;
-        // res.push(City{
-        //     country: String::from(&record[0]),
-        //     name: String::from(&record[4]),
-        //     year: *&record[1].parse::<i32>().unwrap_or_default(),
-        //     value: *&record[9].parse::<f64>().unwrap_or_default()
-        // });        
+        let record = result?;        
         res.push(City::new(
             &record[0],
             &record[4],
@@ -42,19 +36,9 @@ pub fn select_useful(data: Vec<City>) -> Vec<City> {
         let year = val.get_year();
 
         let city = checker.entry(city_name.clone()).or_insert(val.clone());
-        if (city.get_year() < year) {
+        if city.get_year() < year {
             *city = val.clone();
-        }
-
-        
-        // if !checker.contains_key(&city_name) || 
-        //     checker.get(&city_name).get_year() < val.get_year() {
-        //     checker.insert(city_name.clone(), val.clone());
-        // }
-        // let city = checker.entry(city_name.clone()).or_insert(val.clone());
-        // if city.get_year() < val.get_year() {
-        //     checker.insert(city_name.clone(), val.clone());
-        // }
+        }        
     }    
     
     let mut res = Vec::new();
@@ -64,15 +48,11 @@ pub fn select_useful(data: Vec<City>) -> Vec<City> {
     res
 }
 
-// pub fn select_useful(data: Vec<City>) -> HashMap<String,City> {
-//     let mut res = HashMap::new();
-//     for val in data.iter() {
-//         res.insert(val.country.clone(), City::new{
-//             country: val.country.clone(),
-//             name: val.name.clone(),
-//             year: val.year,
-//             value: val.value
-//         });
-//     }    
-//     res
-// }
+pub fn combine_by_countries(data: Vec<City>) -> HashMap<String,Vec<City>> {
+    let mut res = HashMap::new();
+    for val in data.iter() {
+        let vector = res.entry(val.get_country()).or_insert(Vec::new());
+        vector.push(val.clone());
+    }    
+    res
+}

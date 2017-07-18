@@ -24,7 +24,8 @@ impl City {
 
 impl fmt::Display for City {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "country: {}, name: {}; cnt: {}", self.country, self.name, self.value)
+        write!(f, "country: {}, name: {}; cnt: {}, year: {}", 
+        self.country, self.name, self.value, self.year)
     }
 }
 
