@@ -24,8 +24,16 @@ pub fn population(countries: &HashMap<String, Vec<City>>) -> HashMap<String, f64
     res
 }
 
-pub fn top(countries: HashMap<String, Vec<City>>) -> HashMap<String, Vec<City>> {
-    let res = HashMap::new();
+pub fn top(countries: &HashMap<String, Vec<City>>, n: usize) -> HashMap<String, Vec<City>> {
+    let mut res = HashMap::new();
+    for (country, cities) in countries {
+        let mut cities = cities.clone();
+        let top = res.entry(country.clone()).or_insert(Vec::new());
+        cities.sort_by(|a, b| b.get_population().partial_cmp(&a.get_population()).unwrap());
+        for city in cities.iter().take(n) {
+            top.push(city.clone());
+        }
+    }
     res
 }
 

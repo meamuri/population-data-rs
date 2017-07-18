@@ -5,3 +5,5 @@ authors = ["meamuri <meammf@yandex.ru>"]
 
 [dependencies]
 csv = "1.0.0-beta.3"
+bson = "0.1.3"
+mongodb = "0.1.0"
