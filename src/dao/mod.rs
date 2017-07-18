@@ -17,6 +17,7 @@ impl City {
         }
     }
 
+    pub fn get_population(&self) -> f64 { self.value }
     pub fn get_country(&self) -> String { self.country.clone() }
     pub fn get_year(&self) -> i32 { self.year }
     pub fn get_city_name(&self) -> String { self.name.clone()  }

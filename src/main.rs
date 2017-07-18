@@ -1,7 +1,7 @@
 extern crate population_data_rs;
 
-use population_data_rs::computing::loader::{read_csv, combine_by_countries};
-use population_data_rs::computing::loader::select_useful;
+use population_data_rs::computing::loader::{read_csv, combine_by_countries, select_useful};
+use population_data_rs::computing::solve::millionaires;
 
 fn main() {
     let file_path = String::from("data/unsd-citypopulation-year-both.csv");
@@ -19,7 +19,8 @@ fn main() {
     let countries = combine_by_countries(cities);
     println!("{}", countries.len());
 
-    // for val in cities.iter().take(30) {
-    //     println!("{}", val);        
-    // }
+    // this func works!
+    for (key, val) in millionaires(&countries, 1_000_000_f64) {
+        println!("{} : {}", key, val);        
+    }
 }

@@ -1,6 +1,6 @@
 extern crate csv;
 
-use super::super::dao::*;
+use super::super::dao::City;
 
 use std::fs::File;
 use std::error::Error;
