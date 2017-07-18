@@ -52,10 +52,32 @@ pub fn save_top(data: &HashMap<String, Vec<City>>) {
             };
         records.push(doc)        
     }
-    
-    // Insert multiple documents with default options.
+        
     coll.insert_many(records, None)
         .ok().expect("Failed to insert documents.");
-
 }
 
+pub fn save_population(data: &HashMap<String, f64>) {
+    let client = Client::connect("localhost", 27017)
+        .ok().expect("Failed to initialize client.");
+ 
+    let coll = client.db("dsr_rs").collection("population");
+
+    // Remove all documents.    
+    coll.delete_many(doc!{}, None)
+        .ok().expect("Failed to delete documents.");
+
+    let mut records = Vec::new();
+    for (country, population) in data {        
+        let header = country.clone();
+        let info = *population;
+        let doc = doc!{
+            "country" => header, 
+            "population" => info
+            };
+        records.push(doc)        
+    }
+        
+    coll.insert_many(records, None)
+        .ok().expect("Failed to insert documents.");
+}
