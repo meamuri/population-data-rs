@@ -1,13 +1,21 @@
 extern crate population_data_rs;
 
+use std::env;
 use population_data_rs::computing::loader::{read_csv, combine_by_countries, select_useful};
 use population_data_rs::computing::solve::{millionaires, population, top};
 use population_data_rs::computing::saver::{save_millionaires, save_top, save_population};
+use population_data_rs::app::sub_app;
 
 const POPULATION_LEVEL: f64 = 1_000_000.0;
 const TOP_N: usize = 5;
 
 fn main() {
+    let args: Vec<String> = env::args().collect();    
+    if args.len() > 0 && args[1] == "diff" {
+        sub_app();
+        return;
+    }
+
     let file_path = String::from("data/unsd-citypopulation-year-both.csv");
     
     // records: 17059
