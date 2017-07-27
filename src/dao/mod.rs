@@ -6,16 +6,23 @@ pub struct City {
     #[serde(rename = "_id")]  // Use MongoDB's special primary key field name when serializing 
     name: String,
     year: i32,
-    value: f64
+    value: f64,
+    sex: char,
 }
 
 impl City {
-    pub fn new(country: &str, name: &str, year: i32, val: f64 ) -> City {
+    pub fn new(country: &str, name: &str, year: i32, val: f64, sex: &str) -> City {
+        let letter = match sex {
+            "Male" => 'm',
+            "Female" => 'f',
+            _ => 'b',
+        };
         City {
             country: country.to_string(),
             name: name.to_string(),
             year: year,
             value: val,
+            sex: letter,
         }
     }
 

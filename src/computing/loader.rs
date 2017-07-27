@@ -21,7 +21,8 @@ pub fn read_csv(file_path: &str)  -> Result<Vec<City>, Box<Error>> {
             &record[0],
             &record[4],
             *&record[1].parse::<i32>().unwrap_or_default(),
-            *&record[9].parse::<f64>().unwrap_or_default()
+            *&record[9].parse::<f64>().unwrap_or_default(),
+            &record[3]
         ));        
     }
 
