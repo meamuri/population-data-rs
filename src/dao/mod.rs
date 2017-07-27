@@ -30,12 +30,13 @@ impl City {
     pub fn get_country(&self) -> String { self.country.clone() }
     pub fn get_year(&self) -> i32 { self.year }
     pub fn get_city_name(&self) -> String { self.name.clone()  }
+    pub fn get_part(&self) -> char { self.sex }
 }
 
 impl fmt::Display for City {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "country: {}, name: {}; cnt: {}, year: {}", 
-        self.country, self.name, self.value, self.year)
+        write!(f, "country: {}, name: {}; cnt: {}, year: {}, part: {}", 
+        self.country, self.name, self.value, self.year, self.sex )
     }
 }
 

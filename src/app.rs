@@ -1,6 +1,6 @@
-use computing::loader::{read_csv, combine_by_countries, select_useful};
-use computing::solve::{millionaires, population, top};
-use computing::saver::{save_millionaires, save_top, save_population};
+use computing::loader::{read_csv, combine_by_countries, select_useful,select_useful_diff};
+use computing::solve::{millionaires, population, ratio, top};
+use computing::saver::{save_millionaires, save_top, save_population, save_ratio};
 
 const POPULATION_LEVEL: f64 = 1_000_000.0;
 const TOP_N: usize = 5;
@@ -48,8 +48,21 @@ pub fn app_ratio() {
         Err(_) => { panic!("ooops") },
     };
     
-    let cities = select_useful(records);                // cities: 4501
-    let countries = combine_by_countries(cities);       // countries: 208
+    let records = select_useful_diff(records);
+    
+    let countries = ratio(&records);
+    for (key, val) in &countries {
+        println!("{}", key);
+    }
+    println!("{}", countries.len());
+    save_ratio(&countries);
+    // for val in &records {
+    //     println!("{}", val);
+    // }
+    // println!("{}", records.len());
+
+    // let cities = select_useful(records);                // cities: 4501
+    // let countries = combine_by_countries(cities);       // countries: 208
 
     // for (key, val) in countries.iter.take(5) {
     //     println!(&key);

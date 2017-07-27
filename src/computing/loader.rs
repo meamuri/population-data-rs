@@ -49,6 +49,21 @@ pub fn select_useful(data: Vec<City>) -> Vec<City> {
     res
 }
 
+pub fn select_useful_diff(records: Vec<City>) -> Vec<City> {
+    let f_records: Vec<City> = records.iter()
+        .filter(|city| city.get_part() == 'f')
+        .map(|city| city.clone())
+        .collect();
+    let m_records: Vec<City> = records.iter()
+        .filter(|city| city.get_part() == 'm')
+        .map(|city| city.clone())
+        .collect();
+    let mut f_records = select_useful(f_records);
+    let mut m_records = select_useful(m_records);    
+    f_records.append(&mut m_records);
+    f_records
+}
+
 pub fn combine_by_countries(data: Vec<City>) -> HashMap<String,Vec<City>> {
     let mut res = HashMap::new();
     for val in data.iter() {

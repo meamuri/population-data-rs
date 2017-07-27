@@ -81,3 +81,28 @@ pub fn save_population(data: &HashMap<String, f64>) {
     coll.insert_many(records, None)
         .ok().expect("Failed to insert documents.");
 }
+
+pub fn save_ratio(data: &HashMap<String, f64>) {
+    let client = Client::connect("localhost", 27017)
+        .ok().expect("Failed to initialize client.");
+ 
+    let coll = client.db("dsr_rs").collection("ratio");
+
+    // Remove all documents.    
+    coll.delete_many(doc!{}, None)
+        .ok().expect("Failed to delete documents.");
+
+    let mut records = Vec::new();
+    for (country, ratio) in data {        
+        let header = country.clone();
+        let info = *ratio;
+        let doc = doc!{
+            "country" => header, 
+            "ratio" => info
+            };
+        records.push(doc)        
+    }
+        
+    coll.insert_many(records, None)
+        .ok().expect("Failed to insert documents.");
+}
