@@ -36,8 +36,12 @@ pub fn top(countries: &HashMap<String, Vec<City>>, n: usize) -> HashMap<String, 
     res
 }
 
-pub fn ratio(records: &Vec<City>) -> HashMap<String, Vec<f64>> {
+pub fn ratio(data: &Vec<City>) -> HashMap<String, f64> {
     let mut res = HashMap::new();
+    for val in data.iter() {
+        let ratio = res.entry(val.get_country()).or_insert(1.0);
+        *ratio = val.get_population() / *ratio;
+    }    
     res
 }
 

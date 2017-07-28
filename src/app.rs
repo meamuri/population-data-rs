@@ -51,22 +51,7 @@ pub fn app_ratio() {
     let records = select_useful_diff(records);
     
     let countries = ratio(&records);
-    for (key, val) in &countries {
-        println!("{}", key);
-    }
-    println!("{}", countries.len());
-    save_ratio(&countries);
-    // for val in &records {
-    //     println!("{}", val);
-    // }
-    // println!("{}", records.len());
-
-    // let cities = select_useful(records);                // cities: 4501
-    // let countries = combine_by_countries(cities);       // countries: 208
-
-    // for (key, val) in countries.iter.take(5) {
-    //     println!(&key);
-    // }
+    save_ratio(&countries);    
 }
 
 pub fn app_top() {
